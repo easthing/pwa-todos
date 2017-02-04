@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-size: 14px;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Microsoft Yahei', sans-serif;
+  color: #333;
+}
+
+:global #root {
+  height: 100%;
+}
+
+.wrapper {
+  padding: 20px;
+  min-height: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  transition: transform 0.13s cubic-bezier(0,0,0.3,1);
+  transform: translateY(-55px);
+}
+
+.layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  top: 0;
+  left: 0;
+}
+.layerHide {
+  composes: layer;
+  display: none;
+}

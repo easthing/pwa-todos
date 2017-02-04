@@ -1,0 +1,16 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  z-index: 1;
+}
+
+.input {
+  height: 20px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  padding: 5px;
+  flex-grow: 1;
+  outline: none;
+  font-size: 14px;
+}

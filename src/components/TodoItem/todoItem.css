@@ -1,0 +1,11 @@
+.item {
+  word-break: break-all;
+  line-height: 1.5;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.itemComplied {
+  composes: item;
+  color: #888;
+}
