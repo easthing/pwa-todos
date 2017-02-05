@@ -3,6 +3,7 @@
   flex-direction: row;
   position: relative;
   z-index: 1;
+  padding: 20px;
 }
 
 .input {

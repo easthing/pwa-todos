@@ -1,18 +1,29 @@
 const path = require('path');
+const webpack = require('webpack');
 
-module.exports = {
-  entry: './src/main',
+const config = {
+  entry: {
+      main: './src/main',
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel-loader']
+      use: 'babel-loader'
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]'
+      use: ['style-loader', {
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          localIdentName: '[local]--[hash:base64:5]',
+        }
+      }]
     }]
   }
 };
+
+module.exports = config;

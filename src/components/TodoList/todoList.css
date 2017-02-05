@@ -1,4 +1,13 @@
+.list {
+  position: relative;
+}
+.action {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  position: absolute;
+}
 
-.item {
-  line-height: 2;
+.complete {
+  text-align: left;
 }

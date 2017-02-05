@@ -1,8 +1,43 @@
 .item {
   word-break: break-all;
   line-height: 1.5;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+}
+
+.text {
+  background: #FFF;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.action {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  display: flex;
+  font-size: 12px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.complete, .delete {
+  width: 60px;
+  text-align: center;
+  display: inline-block;
+  color: #FFF;
+}
+
+.complete {
+  background-color: #5CB85C;
+}
+
+.delete {
+  background-color: #D9534F;
 }
 
 .itemComplied {

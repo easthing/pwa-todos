@@ -4,7 +4,7 @@ import styles from './todoList.css';
 import TodoItem from '../TodoItem';
 
 const TodoList = ({ todos }) => (
-  <ul>
+  <ul className={styles.list}>
     {todos.map(todo => <TodoItem key={todo.id} {...todo} />)}
   </ul>
 )
