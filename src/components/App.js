@@ -13,78 +13,66 @@ class App extends Component {
     this.isEditing = false;
     this.lockX = false;
     this.lockY = false;
+    this.action = null;
   }
 
   touchStart = (e) => {
     this.startX = e.touches[0].pageX;
     this.startY = e.touches[0].pageY;
+    this.refs.move.classList.remove('transition');
+    e.target.classList.remove('transition');
   }
 
   touchMove = (e) => {
+    e.preventDefault();
     this.currentX = e.touches[0].pageX;
     this.currentY = e.touches[0].pageY;
-
-    if (!this.lockX && this.currentX - this.startX) {
-      this.lockY = true;
-    }
-
-    if (!this.lockY && this.currentY - this.startY) {
+    if (e.target.parentNode.tagName === 'LI' && this.currentX !== this.startX && !this.lockX) {
+      this.lockY = true
+    } else {
       this.lockX = true;
     }
 
-    if (this.lockX) {
-      if (this.currentY > this.startY) {
-        let translateY = this.currentY - this.startY - 55;
-        if (translateY > 0) {
-          translateY = 0;
-        }
-        this.refs.wrapper.style.transform = `translateY(${translateY}px)`
-      }
-    }
-
-    if (this.lockY) {
+    if (this.lockX && this.currentY > this.startY) {
+      let translateY =  Math.max(55 - (this.currentY - this.startY), 0);
+      this.refs.move.style.transform = `translateY(-${translateY}px)`
+    } else if (this.lockY){
       let translateX = this.currentX - this.startX;
-      const id = e.target.dataset.id;
       if (Math.abs(translateX) > 60) {
-        return ;
+        translateX = translateX > 0 ? 60 : -60;
+        this.action = translateX > 0 ? 'toggle' : 'delete';
       }
-      if (id) {
-        e.target.style.transform = `translateX(${translateX}px)`
-      }
+      e.target.style.transform = `translateX(${translateX}px)`
     }
   }
 
   touchEnd = (e) => {
-    const { dispatch } = this.props;
     if (this.lockX) {
-      if (this.currentY > this.startY) {
-        if (this.currentY - this.startY >= 55) {
-          dispatch(isEditing(true));
+      this.refs.move.classList.add('transition')
+      if (this.currentY - this.startY > 55) {
+        this.props.dispatch(isEditing(true));
+      } else {
+        this.refs.move.style.transform = `translateY(-55px)`
+      }
+    } else {
+      e.target.classList.add('transition');
+      if (Math.abs(this.currentX - this.startX) >= 60) {
+        const id = e.target.dataset.id;
+        if (this.action === 'toggle') {
+          this.props.dispatch(toggleTodo(id));
         } else {
-          this.refs.wrapper.style.transform = `translateY(-55px)`;
+          this.props.dispatch(deleteTodo(id));
         }
       }
-    }
-
-    if (this.lockY) {
-      const translateX = this.currentX - this.startX;
-      const id = e.target.dataset.id;
-      if (id) {
-        if (translateX > 0 && translateX > 60) {
-          dispatch(toggleTodo(id))
-        } else if (translateX < -60) {
-          dispatch(deleteTodo(id))
-        }
-      }
-      e.target.style.transform = '';
+      e.target.style.transform = 'translateX(0px)'
     }
 
     this.lockX = false;
     this.lockY = false;
   }
 
-  cancelEdit = () => {
-    this.refs.wrapper.style.transform = `translateY(-55px)`;
+  cancelEdit = (e) => {
+    this.refs.move.style.transform = `translateY(-55px)`;
     this.props.dispatch(isEditing(false));
   }
 
@@ -96,11 +84,12 @@ class App extends Component {
           onTouchMove={this.touchMove}
           onTouchEnd={this.touchEnd}
           className={styles.wrapper}
-          ref="wrapper"
         >
-          <AddTodo cancelEdit={this.cancelEdit}/>
-          <TodoList />
-          <div onClick={this.cancelEdit} onTouchStart={this.cancelEdit} className={layerClass}/>
+          <div ref="move" className={styles.move}>
+            <AddTodo cancelEdit={this.cancelEdit}/>
+            <TodoList />
+            <div onClick={this.cancelEdit} className={layerClass}/>
+          </div>
         </div>
     )
   }

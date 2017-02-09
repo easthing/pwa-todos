@@ -15,8 +15,8 @@
 .action {
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 1px;
+  bottom: 1px;
   right: 0;
   z-index: -1;
   display: flex;
@@ -28,7 +28,6 @@
 .complete, .delete {
   width: 60px;
   text-align: center;
-  display: inline-block;
   color: #FFF;
 }
 

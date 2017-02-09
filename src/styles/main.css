@@ -23,13 +23,12 @@ body {
 }
 
 .wrapper {
-  min-height: 100%;
+  height: 100%;
   box-sizing: border-box;
   position: absolute;
   width: 100%;
   left: 0;
   transition: transform 0.13s cubic-bezier(0,0,0.3,1);
-  transform: translateY(-55px);
   overflow: hidden;
 }
 
@@ -41,8 +40,19 @@ body {
   top: 0;
   left: 0;
   opacity: .9;
+  z-index: 1;
 }
 .layerHide {
   composes: layer;
   display: none;
+}
+
+.move {
+  transform: translateY(-55px);
+  background: #FFF;
+  height: 100%;
+}
+
+:global .transition {
+  transition: transform .3s ease-in-out;
 }

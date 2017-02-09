@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+    //navigator.serviceWorker.register('/sw.js');
 }
 
 render(
