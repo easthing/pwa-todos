@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const WebpackPWAManifest = require('webpack-pwa-manifest');
 
 const config = {
   entry: {
@@ -55,6 +56,11 @@ const config = {
     new SWPrecacheWebpackPlugin({
       cacheId: 'pwa-todos',
       filename: 'sw.js',
+    }),
+    new WebpackPWAManifest({
+      name: 'Todos',
+      description: 'a todo demo of pwa',
+      icon: path.resolve('src/images/icon.jpg'),
     })
   ]
 };
