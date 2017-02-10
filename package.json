@@ -18,15 +18,13 @@
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "html-webpack-plugin": "^2.28.0",
+    "pwa-manifest-webpack-plugin": "^1.0.0",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "sw-precache-webpack-plugin": "^0.8.0",
-    "webpack": "^2.2.1",
-    "webpack-pwa-manifest": "^1.0.1"
+    "webpack": "^2.2.1"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
-    "node-uuid": "^1.4.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
