@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import styles from './addTodo.css';
 import { addTodo, isEditing } from '../../actions';
 
-let input = null;
 class AddTodo extends Component {
   componentDidUpdate() {
     if (this.props.isEditing) {
-      input.focus();
-    } else if (input) {
-      input.blur();
+      this.refs.input.focus();
+    } else (input) {
+      this.refs.input.blur();
     }
   }
   render() {
@@ -23,7 +22,7 @@ class AddTodo extends Component {
           input.value = '';
         }
       }}>
-        <input className={styles.input} ref={node => {
+        <input ref="input" className={styles.input} ref={node => {
           input = node;
         }} placeholder={palceholder}/>
       </form>
