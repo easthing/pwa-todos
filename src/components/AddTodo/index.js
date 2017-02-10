@@ -16,15 +16,13 @@ class AddTodo extends Component {
     return (
       <form className={styles.wrap} onSubmit={e => {
         e.preventDefault();
-        if (input.value.trim()) {
-          this.props.dispatch(addTodo(input.value));
+        if (this.refs.input.value.trim()) {
+          this.props.dispatch(addTodo(this.refs.input.value));
           this.props.cancelEdit();
-          input.value = '';
+          this.refs.input.value = '';
         }
       }}>
-        <input ref="input" className={styles.input} ref={node => {
-          input = node;
-        }} placeholder={palceholder}/>
+        <input ref="input" className={styles.input} placeholder={palceholder}/>
       </form>
     )
   }

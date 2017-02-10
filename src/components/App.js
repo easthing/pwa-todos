@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   touchMove = (e) => {
-    e.preventDefault();
     this.currentX = e.touches[0].pageX;
     this.currentY = e.touches[0].pageY;
     if (e.target.parentNode.tagName === 'LI' && this.currentX !== this.startX && !this.lockX) {
