@@ -7,7 +7,7 @@ class AddTodo extends Component {
   componentDidUpdate() {
     if (this.props.isEditing) {
       this.refs.input.focus();
-    } else (input) {
+    } else {
       this.refs.input.blur();
     }
   }
